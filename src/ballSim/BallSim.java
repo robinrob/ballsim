@@ -39,27 +39,27 @@ public class BallSim implements Runnable
     boolean isRunning = false;
     
 	//simulation parameters
-    private IntSimParameter simWidth;
-    private IntSimParameter simHeight;
-	private IntSimParameter nBalls;
-	private IntSimParameter nPlatforms;
-	private IntSimParameter ballDiameter;
+    private BoundIntParameter simWidth;
+    private BoundIntParameter simHeight;
+	private BoundIntParameter nBalls;
+	private BoundIntParameter nPlatforms;
+	private BoundIntParameter ballDiameter;
 	/* hysteresis of ball on bouncing */
-	private DoubleSimParameter ballHyst;
-	private DoubleSimParameter gravity;
+	private BoundDoubleParameter ballHyst;
+	private BoundDoubleParameter gravity;
 	/* air resistance */
-	private DoubleSimParameter airRes;
+	private BoundDoubleParameter airRes;
 	/* platform surface resistance */
-	private DoubleSimParameter rollRes;
+	private BoundDoubleParameter rollRes;
 	/* rightwards wind strength*/
-	private DoubleSimParameter rightWind;
-	private ColorSimParameter ballColor;
-	private ColorSimParameter platColor;
-	private DoubleSimParameter simSpeed;
+	private BoundDoubleParameter rightWind;
+	private ColorParameter ballColor;
+	private ColorParameter platColor;
+	private BoundDoubleParameter simSpeed;
 	/* amount of spread in initial ball positions */
-	private IntSimParameter ballSpread;
+	private BoundIntParameter ballSpread;
 	/* amount of spread in initial ball velocities */
-	private IntSimParameter ballVelSpread;
+	private BoundIntParameter ballVelSpread;
 
 	
 	private final int N_PARAMS = 15;
@@ -79,57 +79,57 @@ public class BallSim implements Runnable
     	
     	int i = 0;
     	
-    	simWidth = new IntSimParameter("Simulation width", 900, 200, 2000,
+    	simWidth = new BoundIntParameter("Simulation width", 900, 200, 2000,
     	                               false);
     	params[i++] = simWidth;
     	
-    	simHeight = new IntSimParameter("Simulation height", 600, 200, 2000,
+    	simHeight = new BoundIntParameter("Simulation height", 600, 200, 2000,
     	                                false);
     	params[i++] = simHeight;
     	
-    	nBalls = new IntSimParameter("No. of balls", 20, 1, 500, false);
+    	nBalls = new BoundIntParameter("No. of balls", 20, 1, 500, false);
     	params[i++] = (nBalls);
     	
-    	nPlatforms = new IntSimParameter("No. of platforms", 5, 1, 100,
+    	nPlatforms = new BoundIntParameter("No. of platforms", 5, 1, 100,
     	                                 false);
     	params[i++] = (nPlatforms);
     	
-    	ballDiameter = new IntSimParameter("Ball Diameter", 10, 1, 50, false);
+    	ballDiameter = new BoundIntParameter("Ball Diameter", 10, 1, 50, false);
     	params[i++] = (ballDiameter);
     	
-    	ballHyst = new DoubleSimParameter("Ball hysteresis", 0.3, 0.0, 1.0,
+    	ballHyst = new BoundDoubleParameter("Ball hysteresis", 0.3, 0.0, 1.0,
     	                                  true);
     	params[i++] = (ballHyst);
     	
-    	gravity = new DoubleSimParameter("Gravity", 6.0, 0.0, 20.0, true);
+    	gravity = new BoundDoubleParameter("Gravity", 6.0, 0.0, 20.0, true);
     	params[i++] = (gravity);
     	
-    	airRes = new DoubleSimParameter("Air resistance", 0.001, 0.0, 1.0,
+    	airRes = new BoundDoubleParameter("Air resistance", 0.001, 0.0, 1.0,
     	                                true);
     	params[i++] = (airRes);
     	
-    	rollRes = new DoubleSimParameter("Rolling resistance", 0.01, 0.0, 1.0,
+    	rollRes = new BoundDoubleParameter("Rolling resistance", 0.01, 0.0, 1.0,
     	                                 true);
     	params[i++] = rollRes;
     	
-    	rightWind = new DoubleSimParameter("Right wind", 0.0, 0.0, 100.0, true);
+    	rightWind = new BoundDoubleParameter("Wind", 0.0, 0.0, 100.0, true);
     	params[i++] = rightWind;
     	
-    	ballColor = new ColorSimParameter("Ball colour", BALL_COLORS, true);
+    	ballColor = new ColorParameter("Ball colour", BALL_COLORS, true);
     	params[i++] = (ballColor);
     	
-    	platColor = new ColorSimParameter("Platform colour", PLATFORM_COLORS,
+    	platColor = new ColorParameter("Platform colour", PLATFORM_COLORS,
     	                                  true);
     	params[i++] = (platColor);
     	
-    	simSpeed = new DoubleSimParameter("Simulation speed", 1.0, 0.125,
+    	simSpeed = new BoundDoubleParameter("Simulation speed", 1.0, 0.125,
     	                                  DEFAULT_TIME_STEP, true);
     	params[i++] = simSpeed;
     	
-    	ballSpread = new IntSimParameter("Ball spread", 1000, 1, 10000, false);
+    	ballSpread = new BoundIntParameter("Ball spread", 1000, 1, 10000, false);
     	params[i++] = ballSpread;
     	
-    	ballVelSpread = new IntSimParameter("Ball vel. spread", 1000, 1, 10000,
+    	ballVelSpread = new BoundIntParameter("Ball vel. spread", 1000, 1, 10000,
     	                                 false);
     	params[i++] = ballVelSpread;
     	
@@ -306,9 +306,6 @@ public class BallSim implements Runnable
     		 * balls in shared space when drawn/erased sequentially */
     		drawBalls();
     		drawPlatforms();
-    		if (data.getStoppedBalls() == nBalls.getValue()) { 
-    			isRunning = false;
-    		}
     		data.incSimTime();
     		gui.wait((int) (DEFAULT_TIME_STEP / (simSpeed.getValue())));
     	}

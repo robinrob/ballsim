@@ -1,8 +1,8 @@
 package ballSim;
 import java.awt.Color;
-
 import sim.DoubleParameter;
-import sim.IntSimParameter;
+import sim.BoundIntParameter;
+import sim.Canvas;
 
 /**
  * Ball represents a physical ball with a graphical representation. The ball
@@ -28,7 +28,7 @@ public class Ball
     private double yPos; //initial vertical position
     private double xVel; //initial horizontal speed
     private double yVel; //initial vertical speed
-    private IntSimParameter diameter;
+    private BoundIntParameter diameter;
     private DoubleParameter gravity;
     private DoubleParameter ballHyst;
     private DoubleParameter airRes;
@@ -60,7 +60,7 @@ public class Ball
      * @param data DataAnalyser object to send data to.
      */
     public Ball(double xPos, double yPos, double xVel, double yVel,
-                IntSimParameter diameter, DoubleParameter gravity,
+                BoundIntParameter diameter, DoubleParameter gravity,
                 DoubleParameter ballHyst, DoubleParameter airRes,
                 DoubleParameter rollRes, DoubleParameter rightWind,
                 Canvas canvas, int[] platformPos, DataAnalyser data)

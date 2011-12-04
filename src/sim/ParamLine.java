@@ -25,9 +25,12 @@ public abstract class ParamLine extends JPanel
     protected static final Font VALUE_FONT = new Font("Courier", Font.BOLD, 12);
     
     private static final int LABEL_FACTOR = 7;
-    private static final String PREFIX = " ";
-    private static final String SUFFIX = ":";
-    private static final int N_EXTRA_CHARS = PREFIX.length() + SUFFIX.length();
+    private static final String NAME_PREFIX = " ";
+    private static final String NAME_SUFFIX = ":";
+    protected static final String NUM_PREFIX = " ";
+    protected static final String NUM_SUFFIX = "";
+    private static final int EXTRA_NAME_CHARS = NAME_PREFIX.length()
+    										  + NAME_SUFFIX.length();
     
     private final int NAME_WIDTH;
     protected final int NAME_LABEL_WIDTH;
@@ -51,7 +54,7 @@ public abstract class ParamLine extends JPanel
 	{
 		this.param = param;
 		
-		NAME_WIDTH = nameWidth + N_EXTRA_CHARS;
+		NAME_WIDTH = nameWidth + EXTRA_NAME_CHARS;
 		NAME_LABEL_WIDTH = NAME_WIDTH * LABEL_FACTOR;
 		
 		createParamLine();
@@ -66,7 +69,7 @@ public abstract class ParamLine extends JPanel
     protected JLabel createNameLabel()
     {
         JLabel label;
-        String s = PREFIX + param.getName() + SUFFIX;
+        String s = NAME_PREFIX + param.getName() + NAME_SUFFIX;
         label = new JLabel(Formatter.leftJustify(s, NAME_WIDTH));
         label.setFont(NAME_FONT);
         return label;
@@ -80,7 +83,8 @@ public abstract class ParamLine extends JPanel
     protected JLabel createValueLabel()
     {
         JLabel label;
-        String s = param.getValueString();
+        String text = NUM_PREFIX + param.getValueString() + NUM_SUFFIX;
+        String s = Formatter.formatString(text, VALUE_WIDTH);
         label = new JLabel(Formatter.leftJustify(s, VALUE_WIDTH));
         label.setFont(VALUE_FONT);
         return label;

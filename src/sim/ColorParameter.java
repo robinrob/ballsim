@@ -50,15 +50,6 @@ public class ColorParameter extends Parameter
 	}
 	
 	/**
-	 * Sets the value of the ColorParameter given a Color object.
-	 * @param color the new Color.
-	 */
-	public void setValue(String color)
-	{
-		value = stringToColor(color);
-	}
-	
-	/**
 	 * Gets the value of the ColorParameter.
 	 * @return the Color object.
 	 */
@@ -83,6 +74,25 @@ public class ColorParameter extends Parameter
 	public String[] getPossibleColors()
 	{
 		return possibleCols;
+	}
+	
+	/**
+	 * Sets the value of this ColorParameter given a new Color.
+	 * @param color the new Color.
+	 */
+	public void setValue(Color color)
+	{
+		
+	}
+	
+	/**
+	 * Sets the value of this ColorParameter given a String with the name of the
+	 * desired new Color.
+	 * @param color the String with the Color name.
+	 */
+	public void setValue(String color)
+	{
+		value = stringToColor(color);
 	}
 	
 	/**

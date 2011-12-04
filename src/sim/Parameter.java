@@ -16,6 +16,7 @@ public abstract class Parameter
 	public static final int INT = 0;
 	public static final int DOUBLE = 1;
 	public static final int COLOR = 2;
+	public static final int BOOLEAN = 2;
 	
 	protected String name;
 	protected boolean isAdjustable;
@@ -78,8 +79,15 @@ public abstract class Parameter
 	public abstract void decValue();
 	
 	/**
+	 * Sets the value of the Parameter using a String containing the value.
+	 */
+	public abstract void setValue(String s);
+	
+	/**
 	 * Sets the value of the Parameter to its default value.
 	 */
 	public abstract void setDefault();
+	
+
 	
 }

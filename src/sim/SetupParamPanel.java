@@ -1,4 +1,5 @@
 package sim;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -81,19 +82,8 @@ public class SetupParamPanel extends ParamPanel
     private void submit()
     {
     	for (int i = 0; i < N_PARAMS; ++i) {
-    		int type = params[i].getType();
     		String s = ((SetupParamLine) paramLines[i]).getFieldString();
-    		if (type == Parameter.COLOR) {;
-    			((ColorSimParameter) params[i]).setValue(s);
-    		}
-    		else if (type == Parameter.DOUBLE) {
-    			Double value = Double.parseDouble(s);
-    			((DoubleSimParameter) params[i]).setValue(value);
-    		}
-    		else if (type == Parameter.INT) {
-    			int value = Integer.parseInt(s);
-    			((IntSimParameter) params[i]).setValue(value);
-    		}
+    		params[i].setValue(s);
     	}
     	gui.showSimView();
     }
@@ -114,5 +104,3 @@ public class SetupParamPanel extends ParamPanel
     }
 
 }
-
-

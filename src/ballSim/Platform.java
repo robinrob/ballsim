@@ -1,5 +1,6 @@
 package ballSim;
 import java.awt.*;
+import sim.Canvas;
 
 /**
  * Class Platform - a platform object for BallSim.

@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import sim.*;
+import sim.Canvas;
 
 /**
  * BallSimGUI is the GUI and main class for the BallSim project.
@@ -288,6 +289,7 @@ public class BallSimGUI implements SimGUI
     {
     	paramFrame.setVisible(false);
     	dataFrame.setVisible(false);
+    	mainFrame.setVisible(false);
     	SetupParamPanel setupPanel = new SetupParamPanel(sim.getSimParams(),
     	                                                 this);
     	contentPane.removeAll();
@@ -304,12 +306,13 @@ public class BallSimGUI implements SimGUI
     public void showSimView()
     {
     	canvas = new Canvas(sim.getSimWidth(), sim.getSimHeight(), BG_COLOR);
+    	mainFrame.setVisible(false);
     	mainFrame.getContentPane().removeAll();
     	mainFrame.setLayout(new BorderLayout());
     	contentPane.add(canvas.getCanvasPane(), BorderLayout.CENTER);
-        canvas.setVisible(true);
         contentPane.add(runButton, BorderLayout.NORTH);
         mainFrame.pack();
+        canvas.setVisible(true);
         
         sim.createObjects();
         sim.drawPlatforms();
@@ -379,6 +382,7 @@ public class BallSimGUI implements SimGUI
     	contentPane.remove(stopButton);
     	contentPane.add(resetButton, BorderLayout.NORTH);
     	mainFrame.pack();
+    	mainFrame.repaint();
     }
     
     /**
@@ -401,6 +405,7 @@ public class BallSimGUI implements SimGUI
     	contentPane.remove(stopButton);
     	contentPane.add(resetButton, BorderLayout.NORTH);
     	mainFrame.pack();
+    	mainFrame.repaint();
     }
     
     /**

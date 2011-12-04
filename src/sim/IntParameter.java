@@ -14,11 +14,11 @@ public class IntParameter extends Parameter
 	protected int defaultValue;
 	
 	/**
-	 * Creates an IntParameter given a name, value and a boolean value to
+	 * Creates an IntParameter given a name, a value and a boolean value to
 	 * indicate whether or not the parameter is adjustable during running of
 	 * the simulation using it.
 	 * @param name the name for the parameter.
-	 * @param value the value.
+	 * @param value the initial value.
 	 * @param isAdjustable true or false.
 	 */
 	public IntParameter(String name, int value, boolean isAdjustable)
@@ -54,6 +54,16 @@ public class IntParameter extends Parameter
 	public void setValue(int value)
 	{
 		this.value = value;
+	}
+	
+	/**
+	 * Sets the value of this IntParameter using a String containing the new
+	 * value.
+	 * @param value a String containing the new value.
+	 */
+	public void setValue(String s)
+	{
+		this.value = Integer.parseInt(s.trim());
 	}
 	
 	/**

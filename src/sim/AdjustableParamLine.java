@@ -75,8 +75,6 @@ public class AdjustableParamLine extends ParamLine
     {
     	JPanel actionPanel = new JPanel();
     	actionPanel.setLayout(new GridLayout(1, 0));
-    	//actionPanel.setPreferredSize(new Dimension(2 * BUTTON_WIDTH,
-    	                                         //  LINE_HEIGHT));
     	
     	if (param.isAdjustable()) {
     		actionPanel.add(createIncrementButton(valueLabel));
@@ -107,7 +105,8 @@ public class AdjustableParamLine extends ParamLine
         button.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
         	p.incValue();
-        	l.setText(param.getValueString());
+        	String text = NUM_PREFIX + param.getValueString() + NUM_SUFFIX;
+        	l.setText(Formatter.formatString(text, VALUE_WIDTH));
         	}
         });
         return button;
@@ -128,7 +127,8 @@ public class AdjustableParamLine extends ParamLine
         button.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
         	p.decValue();
-        	l.setText(param.getValueString());
+        	String text = NUM_PREFIX + param.getValueString() + NUM_SUFFIX;
+        	l.setText(Formatter.formatString(text, VALUE_WIDTH));
         	}
         });
         return button;

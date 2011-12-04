@@ -101,5 +101,49 @@ public class Formatter implements Serializable
         return string;
     }
     
+    /**
+     * Shortens a string to the given length. If the input string contains a
+     * number in scientific notation e.g. 1.234E5, the output string will
+     * contain at least the E... part and then the digits before the E until the
+     * whole string is of length n.
+     * @param inString the input string.
+     * @param n the number of characters in the returned string.
+     * @return the shortened string.
+     */
+    public static String formatString(String inString, int n)
+    {
+    	char[] strArr = inString.toCharArray();
+    	int l = strArr.length;
+    	String sciSuffix = "";
+    	int nDigits = n;
+    	
+    	for (int i = 1; (i < inString.length()) && (i < 4); ++i) {
+    		if ((strArr[l - i] == 'E')) {
+    			nDigits = n - i;
+    			for (int j = (l - i); j < l; ++j) {
+    				sciSuffix += strArr[j];
+    			}
+    			break;
+    		}
+    	}
+    	
+    	String outString = "";
+    	for (int i = 0; i < nDigits; ++i) {
+    		if (i < inString.length()) {
+    			if (strArr[i] == 'E') {
+    				break;
+    			}
+    			else {
+    				outString += strArr[i];
+    			}
+    		}
+    		else {
+    			outString += ' ';
+    		}
+    	}
+    	
+    	return outString + sciSuffix;
+    }
+    
 }
 

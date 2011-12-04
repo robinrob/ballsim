@@ -57,6 +57,16 @@ public class DoubleParameter extends Parameter
 	}
 	
 	/**
+	 * Sets the value of this DoubleParameter using a String containing the new
+	 * value.
+	 * @param a String containing the new value.
+	 */
+	public void setValue(String s)
+	{
+		this.value = Double.parseDouble(s.trim());
+	}
+	
+	/**
 	 * Sets the value of this DoubleParameter to its initial value.
 	 */
 	public void setDefault()
