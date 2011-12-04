@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=x\ y\ length\ canvas
+comment0.target=Platform(int,\ int,\ int,\ Canvas)
+comment0.text=\n\ Constructor\ for\ a\ Platform\ object\n\ @param\ x\ x-coordinate\ of\ left-hand\ end\ of\ platform\n\ @param\ y\ y-coordinate\ of\ platform\n\ @param\ length\ length\ of\ the\ platform\n\ @param\ canvas\ canvas\ to\ be\ drawn\ onto\n
+comment1.params=colour
+comment1.target=void\ draw(java.awt.Color)
+comment1.text=\n\ Draw\ the\ platform\ onto\ the\ canvas\ in\ the\ specified\ colour\n\ @param\ colour\n
+numComments=2
