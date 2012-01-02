@@ -2,6 +2,7 @@ package uk.co.mrrobinsmith.ballsim.sim;
 import java.util.Random;
 
 import uk.co.mrrobinsmith.ballsim.base.*;
+import uk.co.mrrobinsmith.ballsim.base.ColorParameter;
 
 
 /**
@@ -244,6 +245,7 @@ public class BallSim implements Runnable
             	         8 + 0.01 * random.nextInt(ballVelSpread.getValue()),
             	         0.01 * random.nextInt(ballVelSpread.getValue()),
             	         ballDiameter,
+            	         ballColor,
             	         gravity,
             	         ballHyst,
             	         airRes,
@@ -271,7 +273,7 @@ public class BallSim implements Runnable
     public void drawBalls()
     {
     	for (Ball ball : balls) {
-    		ball.draw(ballColor.getValue());
+    		ball.draw();
     	}
     }
     
@@ -304,7 +306,6 @@ public class BallSim implements Runnable
     		}
     		/* ball drawing is done AFTER move() because of balls erasing other
     		 * balls in shared space when drawn/erased sequentially */
-    		drawBalls();
     		drawPlatforms();
     		data.incSimTime();
     		gui.wait((int) (DEFAULT_TIME_STEP / (simSpeed.getValue())));

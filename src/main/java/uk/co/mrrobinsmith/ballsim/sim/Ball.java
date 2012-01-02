@@ -1,5 +1,4 @@
 package uk.co.mrrobinsmith.ballsim.sim;
-import java.awt.Color;
 
 import uk.co.mrrobinsmith.ballsim.base.*;
 
@@ -28,6 +27,7 @@ public class Ball
     private double xVel; //initial horizontal speed
     private double yVel; //initial vertical speed
     private BoundIntParameter diameter;
+    private ColorParameter color;
     private DoubleParameter gravity;
     private DoubleParameter ballHyst;
     private DoubleParameter airRes;
@@ -59,7 +59,7 @@ public class Ball
      * @param data DataAnalyser object to send data to.
      */
     public Ball(double xPos, double yPos, double xVel, double yVel,
-                BoundIntParameter diameter, DoubleParameter gravity,
+                BoundIntParameter diameter, ColorParameter color, DoubleParameter gravity,
                 DoubleParameter ballHyst, DoubleParameter airRes,
                 DoubleParameter rollRes, DoubleParameter rightWind,
                 Canvas canvas, int[] platformPos, DataAnalyser data)
@@ -69,6 +69,7 @@ public class Ball
         this.xVel = xVel;
         this.yVel = yVel;
         this.diameter = diameter;
+        this.color = color;
         //startDiameter = diameter.getValue();
         this.gravity = gravity;
         this.ballHyst = ballHyst;
@@ -102,10 +103,10 @@ public class Ball
     /**
      * Draws this Ball at its current position onto its Canvas.
      */
-    public void draw(Color colour)
+    public void draw()
     {
     	if (ballInXBounds() && ballInYBounds()) {
-    		canvas.setForegroundColor(colour);
+    		canvas.setForegroundColor(color.getValue());
         	canvas.fillCircle((int) (xPos), (int) (yPos), diameter.getValue());
         	if (isOffScreen) {
         		isOffScreen = false;
@@ -147,6 +148,8 @@ public class Ball
     	}
     	if (isStoppedX && isStoppedY && !isStopped)
     		stopBall();
+    	
+    	draw();
     }
     
     /**
